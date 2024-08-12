@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Text encryptor for secret messages.">
+    <title>Text Encryptor</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to external stylesheet -->
+    <link rel="icon" href="imgs/encryptedfile.png" type="image/x-icon"> <!-- Favicon -->
+</head>
+<body>
+
+    <header class="header">
+        <h1 class="header__title">Text Encryptor</h1> <!-- Main title of the application -->
+    </header>
+    
+    <main class="main">
+        <div class="box_textarea">
+            <!-- Input textarea for user message -->
+            <textarea class="textarea__element textarea__element--input" 
+                      placeholder="Escribe aquí tu mensaje" 
+                      id="textareaInput"></textarea>
+
+            <!-- Output textarea for encrypted message -->
+            <textarea class="textarea__element textarea__element--output" 
+                      placeholder="Mensaje encriptado" 
+                      id="textareaOutput" readonly></textarea>
+        </div>
+
+        <div class="alert__box">
+            <img class="alert__image" src="imgs/alert.png" alt="Alert Icon"> <!-- Alert icon -->
+            <p class="alert">Solo se aceptan letras minúsculas sin acentos ni caracteres especiales.</p> <!-- Alert message -->
+        </div>
+        
+        <div class="box__buttons">
+            <!-- Button to encrypt text -->
+            <button class="button__element button__element--encrypt" 
+                    id="encryptButton" 
+                    onmouseover="playSound()">Encrypt</button>
+            <!-- Button to decrypt text -->
+            <button class="button__element button__element--decrypt" 
+                    id="decryptButton" 
+                    onmouseover="playSound()">Decrypt</button>
+            <!-- Button to copy text -->
+            <button class="button__element button__textarea--copy" 
+                    id="copyButton" 
+                    onmouseover="playSound()">Copy Text</button>
+            <!-- Button to clear text -->
+            <button class="button__element button__element--clean" 
+                    id="cleanButton" 
+                    onmouseover="playSound()">Clear Text</button>
+            <!-- Audio elements for button sounds -->
+            <audio id="sound__Button" src="sounds/clickbutton.mp3" preload="auto"></audio>
+            <audio id="sound__Wrong" src="sounds/wrongsound.mp3" preload="auto"></audio>
+        </div>
+        
+        <img class="main__image" src="imgs/encrypted.png" alt="Encryption Image"> <!-- Main image related to encryption -->
+        
+        <div class="box__switchers">
+            <!-- Theme switcher -->
+            <div class="theme-switcher">
+                <input type="checkbox" id="theme-toggle">
+                <label for="theme-toggle" class="theme-slider"></label>
+            </div>
+    
+            <!-- Language switcher -->
+            <div class="language-switcher">
+                <input type="checkbox" id="language-toggle">
+                <label for="language-toggle" class="language-slider"></label>
+            </div>
+        </div>
+
+        <section class="box__type_encryptation">
+            <!-- Checkbox for maximum encryption -->
+            <input type="checkbox" class="checkbox__element" id="checkButton__Aes"> 
+            <label for="checkButton__Aes" class="aes__label">Maximum Encryption</label>
+            <!-- Checkbox for simple encryption -->
+            <input type="checkbox" class="checkbox__element" id="checkButton__Simple"> 
+            <label for="checkButton__Simple" class="simple__label">Simple Encryption</label>
+        </section>
+    </main>
+    
+    <footer class="footer">
+        <p class="footer__text">By:</p>
+        <p>Luis Fernández</p>
+
+        <!-- Social media links -->
+        <a href="https://www.instagram.com/im_luisf/" target="_blank" rel="noopener noreferrer">
+            <img class="footer__icon footer__icon--instagram" src="imgs/instagram.png" alt="Instagram">
+        </a>
+        <a href="https://www.linkedin.com/in/imluisf/" target="_blank" rel="noopener noreferrer">
+            <img class="footer__icon footer__icon--linkedin" src="imgs/linkedin.png" alt="LinkedIn">
+        </a>
+        <a href="https://www.youtube.com/@imluisf" target="_blank" rel="noopener noreferrer">
+            <img class="footer__icon footer__icon--youtube" src="imgs/youtube.png" alt="YouTube">
+        </a>
+        <a href="https://github.com/imluisf" target="_blank" rel="noopener noreferrer">
+            <img class="footer__icon footer__icon--github" src="imgs/github.png" alt="GitHub"> 
+        </a>
+    </footer>
+
+    <script src="script.js"></script> <!-- Link to external JavaScript file -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script> <!-- Link to CryptoJS library -->
+</body>
+</html>

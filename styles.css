@@ -1,0 +1,291 @@
+/* Reset default margin and padding for all elements */
+* { 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Ensure consistent box sizing */
+}
+
+/* Body styles */
+body {
+    transition: background-image 0.3s, color 0.3s; /* Smooth transition for background and text color */
+    background-image: url("imgs/backgrounddark.jpg"); /* Dark background image */
+    font-family: sans-serif; /* Set font family */
+    color: #ffffff; /* Text color */
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Stack children vertically */
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+    min-height: 100vh; /* Minimum height of viewport */
+    background-size: cover; /* Cover the entire background */
+    background-repeat: no-repeat; /* Prevent background repetition */
+    background-position: center; /* Center the background */
+}
+
+/* Light theme background */
+body.light {
+    background-image: url("imgs/backgroundlight.jpg"); /* Light background image */
+}
+
+/* Theme switcher styles */
+.theme-switcher {
+    position: relative; 
+    width: 60px; /* Width of the switch */
+    height: 34px; /* Height of the switch */
+}
+
+/* Hide the default checkbox input */
+.theme-switcher input {
+    opacity: 0; /* Make input invisible */
+    width: 0; /* Remove width */
+    height: 0; /* Remove height */
+}
+
+/* Slider for the theme switch */
+.theme-slider {
+    position: absolute; /* Position absolutely within the switcher */
+    cursor: pointer; /* Change cursor to pointer */
+    top: 0; left: 0; right: 0; bottom: 0; /* Stretch to fill the switch */
+    background-color: #ccc; /* Default background color */
+    transition: .4s; /* Smooth transition */
+    border-radius: 34px; /* Rounded corners */
+}
+
+/* Before pseudo-element for the slider */
+.theme-slider:before {
+    position: absolute; /* Position absolutely */
+    content: ""; /* Empty content */
+    height: 26px; /* Height of the slider knob */
+    width: 26px; /* Width of the slider knob */
+    left: 4px; /* Position from the left */
+    bottom: 4px; /* Position from the bottom */
+    transition: .4s; /* Smooth transition */
+    border-radius: 50%; /* Make it circular */
+    background-image: url("imgs/noche.png"); /* Night image */
+    background-size: cover; /* Cover the knob */
+}
+
+/* Change background color when checked */
+input:checked + .theme-slider {
+    background-color: #ccc; /* Background color when checked */
+}
+
+/* Move the knob when checked */
+input:checked + .theme-slider:before {
+    transform: translateX(26px); /* Move knob to the right */
+    background-image: url("imgs/sol.png"); /* Sun image */
+}
+
+/* Container for switchers */
+.box__switchers {
+    display: flex; /* Use flexbox for layout */
+    gap: 10px; /* Space between switchers */
+}
+
+/* Language switcher styles */
+.language-switcher {
+    position: relative; 
+    width: 60px; /* Width of the switch */
+    height: 34px; /* Height of the switch */
+}
+
+/* Hide the default checkbox input */
+.language-switcher input {
+    opacity: 0; /* Make input invisible */
+    width: 0; /* Remove width */
+    height: 0; /* Remove height */
+}
+
+/* Slider for the language switch */
+.language-slider {
+    position: absolute; /* Position absolutely within the switcher */
+    cursor: pointer; /* Change cursor to pointer */
+    top: 0; left: 0; right: 0; bottom: 0; /* Stretch to fill the switch */
+    background-color: #ccc; /* Default background color */
+    transition: .4s; /* Smooth transition */
+    border-radius: 34px; /* Rounded corners */
+}
+
+/* Before pseudo-element for the language slider */
+.language-slider:before {
+    position: absolute; /* Position absolutely */
+    content: ""; /* Empty content */
+    height: 26px; /* Height of the slider knob */
+    width: 26px; /* Width of the slider knob */
+    left: 4px; /* Position from the left */
+    bottom: 4px; /* Position from the bottom */
+    transition: .4s; /* Smooth transition */
+    border-radius: 50%; /* Make it circular */
+    background-image: url("imgs/spanish.png"); /* Spanish flag image */
+    background-size: cover; /* Cover the knob */
+}
+
+/* Change background color when checked for language */
+input:checked + .language-slider {
+    background-color: #ccc; /* Background color when checked */
+}
+
+/* Move the knob when checked for language */
+input:checked + .language-slider:before {
+    transform: translateX(26px); /* Move knob to the right */
+    background-image: url("imgs/english.png"); /* English flag image */
+}
+
+/* Header styles */
+header {
+    text-align: center; /* Center text */
+    width: 100%; /* Full width */
+}
+
+/* Title styles */
+.header__title {
+    font-size: 70px; /* Font size for title */
+    text-shadow: 2px 2px 8px rgb(0, 0, 0); /* Shadow for title */
+}
+
+/* Main content styles */
+.main {
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Stack children vertically */
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+    gap: 5px; /* Space between elements */
+    width: 800px; /* Fixed width */
+    min-height: 70dvh; /* Minimum height */
+}
+
+/* Textarea container styles */
+.box_textarea {
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Stack children vertically */
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+    min-width: 90%; /* Minimum width */
+    min-height: 150px; /* Minimum height */
+}
+
+/* Textarea styles */
+.textarea__element {
+    margin: 5px; /* Margin around textarea */
+    border-radius: 8px; /* Rounded corners */
+    min-width: 90%; /* Minimum width */
+    min-height: 200px; /* Minimum height */
+    resize: none; /* Disable resizing */
+    background-image: url("imgs/textarea.jpg"); /* Background image */
+}
+
+/* Font size for input and output textareas */
+.textarea__element--input, 
+.textarea__element--output {
+    font-size: 20px; /* Font size */
+}
+
+/* Alert box styles */
+.alert__box {
+    display: flex; /* Use flexbox for layout */
+    gap: 5px; /* Space between elements */
+    min-width: 82%; /* Minimum width */
+}
+
+/* Image styles for alerts */
+.alert__image {
+    max-width: 18px; /* Maximum width */
+    max-height: 18px; /* Maximum height */
+}
+
+/* Encryption type box styles */
+.box__type_encryptation {
+    display: flex; /* Use flexbox for layout */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    font-size: 20px; /* Font size */
+    border-radius: 8px; /* Rounded corners */
+    gap: 05px; /* Space between elements */
+    max-width: 70%; /* Maximum width of the box */
+}
+
+/* Button container styles */
+.box__buttons {
+    display: flex; /* Use flexbox for layout */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    gap: 5px; /* Space between buttons */
+    min-width: 80%; /* Minimum width */
+}
+
+/* Button styles */
+.button__element {
+    font-size: medium; /* Font size */
+    border-radius: 18px; /* Rounded corners */
+    flex: 1; /* Grow to fill space */
+    line-height: 30px; /* Line height */
+    font-weight: 600; /* Bold text */
+    color: white; /* Text color */
+    background-color: #6a66ed; /* Background color */
+    border: none; /* Remove border */
+    padding: 5px; /* Padding */
+    transition: box-shadow 0.3s, transform 0.3s; /* Smooth transition for effects */
+}
+
+/* Button hover effects */
+.button__element:hover {
+    box-shadow: 0 8px 16px rgb(255, 255, 255); /* Shadow on hover */
+    transform: translateY(-2px); /* Lift effect on hover */
+}
+
+/* Main image styles */
+.main__image {
+    max-width: 36%; /* Maximum width */
+    max-height: 36%; /* Maximum height */
+}
+
+/* Footer styles */
+.footer {
+    margin-top: 10px; /* Margin above footer */
+    width: 100%; /* Full width */
+    text-align: center; /* Center text */
+}
+
+/* Footer icon styles */
+.footer__icon {
+    padding: 05px; /* Padding around icon */
+    max-width: 40px; /* Maximum width */
+    max-height: 40px; /* Maximum height */
+}
+
+/* Link styles */
+a {
+    color: transparent; /* Make links invisible */
+}
+
+/* Media queries for responsive design */
+@media (max-width: 767px) {
+    .main__image {
+        display: none; /* Hide main image on small screens */
+    }
+}
+
+@media (min-width: 361px) {
+    .main {
+        width: 100%; /* Full width on medium screens */
+        height: 100%; /* Full height */
+    }
+}
+
+@media (min-width: 1025px) {
+    .main {
+        width: 800px; /* Fixed width on large screens */
+    }
+    
+    .textarea_Input, 
+    .textarea_Output {
+        width: 90%; /* Width for input and output textareas */
+        height: 90%; /* Height for input and output textareas */
+    }
+}
+
+@media (max-width: 361px) {
+    .main {
+        width: 100%; /* Full width on small screens */
+        height: 100dvh; /* Full height */
+    }
+}
