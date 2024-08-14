@@ -30,7 +30,7 @@ document.getElementById("checkButton__Simple").addEventListener("change", handle
 document.getElementById("encryptButton").onclick = function() {
     const inputText = document.getElementById("textareaInput").value;
 
-    if (inputText.trim() === "" || inputText.trim().length < 3) {
+    if (inputText.trim() === "" || inputText.trim().length < 2) {
         wrongSound();
         return;
     }
