@@ -1,9 +1,8 @@
-// Set the AES checkbox to be checked by default
-document.getElementById("checkButton__Aes").checked = true;
+// Set the Simple checkbox to be checked by default
+document.getElementById("checkButton__Simple").checked = true;
 
 // Convert input text to lowercase and filter out special characters
 document.getElementById("textareaInput").addEventListener("input", function() {
-    // Convert to lowercase and remove non-alphanumeric characters
     this.value = this.value.toLowerCase().replace(/[^a-z0-9\s]/g, '');
 });
 
@@ -12,16 +11,14 @@ function handleCheckboxChange() {
     const aesCheckbox = document.getElementById("checkButton__Aes");
     const simpleCheckbox = document.getElementById("checkButton__Simple");
 
-    // If one checkbox is checked, uncheck the other
     if (this === aesCheckbox) {
         simpleCheckbox.checked = false;
     } else if (this === simpleCheckbox) {
         aesCheckbox.checked = false;
     }
 
-    // Ensure at least one checkbox is checked
     if (!aesCheckbox.checked && !simpleCheckbox.checked) {
-        aesCheckbox.checked = true; // Check AES by default
+        simpleCheckbox.checked = true; // Check Simple by default
     }
 }
 
@@ -33,22 +30,19 @@ document.getElementById("checkButton__Simple").addEventListener("change", handle
 document.getElementById("encryptButton").onclick = function() {
     const inputText = document.getElementById("textareaInput").value;
 
-    // Check if input text is empty or too short
     if (inputText.trim() === "" || inputText.trim().length < 3) {
-        wrongSound(); // Play error sound
-        return; // Stop the function if the textarea is empty
+        wrongSound();
+        return;
     }
 
     let encryptedText;
 
-    // Encrypt based on the selected checkbox
     if (document.getElementById("checkButton__Aes").checked) {
         encryptedText = CryptoJS.AES.encrypt(inputText, "me_llamo_luis").toString();
     } else {
         encryptedText = encryptation(inputText);
     }
 
-    // Display encrypted text in the output textarea
     document.getElementById("textareaOutput").value = encryptedText;
 };
 
@@ -56,15 +50,13 @@ document.getElementById("encryptButton").onclick = function() {
 document.getElementById("decryptButton").onclick = function() {
     const encryptedText = document.getElementById("textareaOutput").value;
 
-    // Check if encrypted text is empty
     if (encryptedText.trim() === "") {
-        wrongSound(); // Play error sound
-        return; // Stop the function if the textarea is empty
+        wrongSound();
+        return;
     }
 
     let decryptedText;
 
-    // Decrypt based on the selected checkbox
     if (document.getElementById("checkButton__Aes").checked) {
         const bytes = CryptoJS.AES.decrypt(encryptedText, "me_llamo_luis");
         decryptedText = bytes.toString(CryptoJS.enc.Utf8);
@@ -72,18 +64,15 @@ document.getElementById("decryptButton").onclick = function() {
         decryptedText = decryptation(encryptedText);
     }
 
-    // Update the output textarea only if there is decrypted text
     if (decryptedText.trim() !== "") {
-        document.getElementById("textareaOutput").value = decryptedText; // Show decrypted text
+        document.getElementById("textareaOutput").value = decryptedText;
     }
 };
 
 // Function for simple encryption
 function encryptation(stringEncrypt) {
-    // Define the encryption matrix
     let matrixCode = [["e", "enter"], ["i", "imes"], ["a", "ai"], ["o", "ober"], ["u", "ufat"]];
     stringEncrypt = stringEncrypt.toLowerCase();
-    // Replace characters based on the matrix
     for (let i = 0; i < matrixCode.length; i++) {
         stringEncrypt = stringEncrypt.replaceAll(matrixCode[i][0], matrixCode[i][1]);
     }
@@ -92,10 +81,8 @@ function encryptation(stringEncrypt) {
 
 // Function for simple decryption
 function decryptation(stringDecrypt) {
-    // Define the decryption matrix
     let matrixCode = [["e", "enter"], ["i", "imes"], ["a", "ai"], ["o", "ober"], ["u", "ufat"]];
     stringDecrypt = stringDecrypt.toLowerCase();
-    // Replace characters based on the matrix
     for (let i = 0; i < matrixCode.length; i++) {
         stringDecrypt = stringDecrypt.replaceAll(matrixCode[i][1], matrixCode[i][0]);
     }
@@ -105,8 +92,8 @@ function decryptation(stringDecrypt) {
 // Clear text fields function
 document.getElementById("cleanButton").addEventListener("click", clean);
 function clean() {
-    document.getElementById("textareaOutput").value = ""; // Clear output textarea
-    document.getElementById("textareaInput").value = ""; // Clear input textarea
+    document.getElementById("textareaOutput").value = "";
+    document.getElementById("textareaInput").value = "";
 }
 
 // Copy text to clipboard function
@@ -114,30 +101,30 @@ document.getElementById("copyButton").addEventListener("click", copy);
 function copy() {
     const OutText = document.getElementById("textareaOutput").value;
     navigator.clipboard.writeText(OutText).then(() => {
-        console.log("Text copied to clipboard"); // Log success
+        console.log("Text copied to clipboard");
     }).catch(err => {
-        console.error("Error copying text: ", err); // Log error
+        console.error("Error copying text: ", err);
     });
 }
 
 // Play sound function
 function playSound() {
     var sound = document.getElementById("sound__Button");
-    sound.currentTime = 0; // Reset sound
-    sound.play(); // Play sound
+    sound.currentTime = 0;
+    sound.play();
 }
 
 // Play error sound function
 function wrongSound() {
     var sound = document.getElementById("sound__Wrong");
-    sound.currentTime = 0; // Reset sound
-    sound.play(); // Play error sound
+    sound.currentTime = 0;
+    sound.play();
 }
 
 // Theme toggle functionality
 const toggle = document.getElementById('theme-toggle');
 toggle.addEventListener('change', () => {
-    document.body.classList.toggle('light'); // Toggle light theme
+    document.body.classList.toggle('light');
 });
 
 // Translations object for multilingual support
@@ -154,6 +141,10 @@ const translations = {
         footer__text: "By:",
         textareaInput: "Type your message here",
         textareaOutput: "Encrypted message",
+        tooltip: {
+            aes: "Advanced encryption using AES (Advanced Encryption Standard).",
+            simple: "Simple encryption based on character substitutions."
+        }
     },
     es: {
         title: "Encriptador de texto",
@@ -167,18 +158,21 @@ const translations = {
         footer__text: "Por:",
         textareaInput: "Escribe tu mensaje aquí",
         textareaOutput: "Mensaje encriptado",
+        tooltip: {
+            aes: "Encriptación avanzada que utiliza AES (Advanced Encryption Standard).",
+            simple: "Encriptación simple basada en sustituciones de caracteres."
+        }
     }
 };
 
 // Initialize with Spanish as the default language
-let currentLanguage = 'es'; // Set default language to Spanish
-updateLanguage(); // Update the interface on load
+let currentLanguage = 'es';
+updateLanguage();
 
 // Function to update the language
 function updateLanguage() {
     const translation = translations[currentLanguage];
 
-    // Update text content based on the selected language
     document.querySelector(".header__title").textContent = translation.title;
     document.querySelector(".alert").textContent = translation.alert;
     document.getElementById("encryptButton").textContent = translation.encryptButton;
@@ -190,10 +184,14 @@ function updateLanguage() {
     document.querySelector(".footer__text").textContent = translation.footer__text;
     document.getElementById("textareaInput").placeholder = translation.textareaInput; 
     document.getElementById("textareaOutput").placeholder = translation.textareaOutput; 
+
+    // Update tooltips
+    document.querySelector('.aes__label').title = translation.tooltip.aes;
+    document.querySelector('.simple__label').title = translation.tooltip.simple;
 }
 
 // Change language on toggle click
 document.getElementById("language-toggle").addEventListener("change", () => {
-    currentLanguage = currentLanguage === 'es' ? 'en' : 'es'; // Toggle language
-    updateLanguage(); // Update the interface with the new language
+    currentLanguage = currentLanguage === 'es' ? 'en' : 'es';
+    updateLanguage();
 });
