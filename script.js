@@ -1,9 +1,9 @@
 // Set the Simple checkbox to be checked by default
 document.getElementById("checkButton__Simple").checked = true;
 
-// Convert input text to lowercase and filter out special characters
+// Convert input text to lowercase and filter out numbers and special characters
 document.getElementById("textareaInput").addEventListener("input", function() {
-    this.value = this.value.toLowerCase().replace(/[^a-z0-9\s]/g, '');
+    this.value = this.value.toLowerCase().replace(/[^a-z\s]/g, '');
 });
 
 // Function to handle checkbox changes

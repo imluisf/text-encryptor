@@ -151,6 +151,7 @@ header {
     gap: 5px; /* Space between elements */
     width: 800px; /* Fixed width */
     min-height: 70dvh; /* Minimum height */
+
 }
 
 /* Textarea container styles */
@@ -161,6 +162,7 @@ header {
     align-items: center; /* Center content horizontally */
     min-width: 90%; /* Minimum width */
     min-height: 150px; /* Minimum height */
+
 }
 
 /* Textarea styles */
@@ -201,6 +203,7 @@ header {
     border-radius: 8px; /* Rounded corners */
     gap: 05px; /* Space between elements */
     max-width: 70%; /* Maximum width of the box */
+
 }
 
 /* Button container styles */
@@ -210,6 +213,7 @@ header {
     align-items: center; /* Center content vertically */
     gap: 5px; /* Space between buttons */
     min-width: 80%; /* Minimum width */
+
 }
 
 /* Button styles */
